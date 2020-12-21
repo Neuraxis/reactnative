@@ -14,8 +14,6 @@ Notifications.setNotificationHandler({
 });
 
 const HomeScreen = (props: any) => {
-
-
 	const [expoPushToken, setExpoPushToken] = useState<any>('');
 	const [notification, setNotification] = useState<any>(false);
 	const notificationListener = useRef<Subscription>();
@@ -34,7 +32,7 @@ const HomeScreen = (props: any) => {
 		// 		alert('Failed to get push token for push notification!');
 		// 		return;
 		// 	}
-			token = (await Notifications.getExpoPushTokenAsync()).data;
+		token = (await Notifications.getExpoPushTokenAsync()).data;
 		// 	console.log(token);
 		// } else {
 		// 	alert('Must use physical device for Push Notifications');
@@ -54,8 +52,9 @@ const HomeScreen = (props: any) => {
 
 	useEffect(() => {
 		registerForPushNotificationsAsync().then(token => {
-			console.log('token', token)
-			setExpoPushToken(token)});
+			console.log('token', token);
+			setExpoPushToken(token);
+		});
 
 		notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
 			setNotification(notification);
@@ -78,23 +77,26 @@ const HomeScreen = (props: any) => {
 	return (
 		<View
 			style={{
+				padding: 30,
 				flex: 1,
 				alignItems: 'center',
 				justifyContent: 'space-around'
 			}}
 		>
-			<Text>Your expo push token: {expoPushToken}</Text>
 			<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-				<Text>Title: {notification && notification.request.content.title} </Text>
-				<Text>Body: {notification && notification.request.content.body}</Text>
-				<Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
+				<View style={{ padding: 10 }}>
+					<Button title="Login" onPress={() => props.navigation.navigate('ImageScreen')} />
+				</View>
+
+				{/* <TouchableOpacity onPress={() => props.navigation.navigate('ListScreen')}>
+					<Text>List Screen</Text>
+				</TouchableOpacity> */}
+				<Button title="List Screen" onPress={() => props.navigation.navigate('ListScreen')} />
 			</View>
-			<Button
-				title="Press to schedule a notification"
-				onPress={async () => {
-					// await schedulePushNotification();
-				}}
-			/>
+
+			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+				<Text>Your expo push token: {expoPushToken}</Text>
+			</View>
 		</View>
 	);
 };
