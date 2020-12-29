@@ -1,40 +1,30 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { ReactNativeAD, ADLoginView } from 'react-native-azure-ad';
+
+const CLIENT_ID = '0579b0c4-c92c-4096-a8ff-436068585593';
 
 const ListScreen = () => {
-	const data = [
-		{ name: 'Test1' },
-		{ name: 'Test2' },
-		{ name: 'Test3' },
-		{ name: 'Test4' },
-		{ name: 'Test5' },
-		{ name: 'Test6' },
-		{ name: 'Test7' },
-		{ name: 'Test8' },
-		{ name: 'Test9' },
-		{ name: 'Test10' },
-		{ name: 'Test11' },
-		{ name: 'Test12' }
-	];
+	const onLoginSuccess = (credentials: any) => {
+		console.log('onLoginSuccess');
+		console.log(credentials);
+		// use credentials.access_token..
+	};
 
-	return (
-		<FlatList
-			showsVerticalScrollIndicator={false}
-			data={data}
-			keyExtractor={item => item.name}
-			renderItem={({ item, index }) => {
-				return <Text style={styles.textStyle}>{item.name}</Text>;
-			}}
-		/>
-	);
+	const b2cLogin = new ReactNativeAD({
+		client_id: CLIENT_ID,
+		redirect_url : 'http://localhost:8080',
+		authority_host : 'https://login.microsoftonline.com/2864f69d-77c3-4fbe-bbc0-97502052391a/oauth2/authorize',
+		tenant: '2864f69d-77c3-4fbe-bbc0-97502052391a',
+		// client_secret: '/Xo8WBi6jzSxKDVR4drqm84yr9iU=',
+		// user_flow_policy: 'B2C_1_signupsignin',
+		// token_uri: 'https://login.microsoftonline.com/2864f69d-77c3-4fbe-bbc0-97502052391a/v2.0',
+		// authority_host: 'https://login.microsoftonline.com',
+		redirect_uri: 'msauth://com.angloamerican.digitalscheduler/Xo8WBi6jzSxKDVR4drqm84yr9iU%3D',
+		prompt: 'login',
+		resources: ['https://graph.microsoft.com']
+	});
+
+	return <ADLoginView context={b2cLogin} onSuccess={onLoginSuccess} />;
 };
-
-const styles = StyleSheet.create({
-	textStyle: {
-		fontSize: 15,
-		marginVertical: 50
-	}
-});
 
 export default ListScreen;

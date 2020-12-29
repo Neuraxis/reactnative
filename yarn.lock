@@ -7006,6 +7006,11 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-native-azure-ad@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-azure-ad/-/react-native-azure-ad-0.2.4.tgz#e08b04629f228e3184e8589b065c672744878e24"
+  integrity sha1-4IsEYp8ijjGE6FibBlxnJ0SHjiQ=
+
 react-native-gesture-handler@~1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.8.0.tgz#18f61f51da50320f938957b0ee79bc58f47449dc"
