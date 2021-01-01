@@ -4,7 +4,7 @@ import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
 const HomeScreen = (props: any) => {
 	console.log('props', props);
 	return (
-		<View>
+		<View style={styles.viewStyle}>
 			<Text style={styles.textStyle}>Home Screen</Text>
 			<Button title="Splash Screen" onPress={() => props.navigation.navigate('SplashScreen')} />
 			<TouchableOpacity onPress={() => props.navigation.navigate('ListScreen')}>
@@ -19,6 +19,9 @@ const HomeScreen = (props: any) => {
 const styles = StyleSheet.create({
 	textStyle: {
 		fontSize: 15
+	},
+	viewStyle: {
+		padding: 30
 	}
 });
 

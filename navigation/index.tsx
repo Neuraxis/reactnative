@@ -37,9 +37,9 @@ function RootNavigator() {
 			<Stack.Screen name="ImageScreen" component={ImageScreen} />
 			<Stack.Screen name="CounterScreen" component={CounterScreen} />
 			<Stack.Screen name="ColorScreen" component={ColorScreen} />
-			
+
 			<Stack.Screen name="Root" component={BottomTabNavigator} />
-			
+
 			<Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
 		</Stack.Navigator>
 	);
